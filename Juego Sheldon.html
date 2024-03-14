@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Sheldon</title>
+    <script>
+
+    function escogeropcion(){
+        var opcion = prompt("Elige una opcion");
+        return opcion;
+    }
+    function numaleatorio(){
+        var i = Math.floor(Math.random()*opciones.length);
+        return i;
+    }
+    function opcionmaquina(){
+        var opcionMaquina = opciones[numaleatorio()];
+        return opcionMaquina;
+    }
+      
+    function resultado(opcionJugador,opcionMaquina){
+        
+        var gana;
+    
+       if(opcionJugador=='Piedra'){
+
+        if(opcionMaquina=='Piedra'){
+            gana='Empate';
+        }else if(opcionMaquina=="Lagarto"||opcionMaquina=="Tijeras"){
+            gana='Jugador'
+        }else if(opcionMaquina=="Spock"||opcionMaquina=="Papel"){
+            gana='Maquina'
+        }
+       }
+       if(opcionJugador=='Papel'){
+
+        if(opcionMaquina=='Papel'){
+            gana='Empate';
+        }else if(opcionMaquina=="Piedra"||opcionMaquina=="Spock"){
+            gana='Jugador'
+        }else if(opcionMaquina=="Tijeras"||opcionMaquina=="Lagarto"){
+            gana='Maquina'
+        }
+        }
+        if(opcionJugador=='Tijeras'){
+
+        if(opcionMaquina=='Tijeras'){
+            gana='Empate';
+        }else if(opcionMaquina=="Papel"||opcionMaquina=="Lagarto"){
+            gana='Jugador'
+        }else if(opcionMaquina=="Spock"||opcionMaquina=="Piedra"){
+            gana='Maquina'
+        }
+        }
+        if(opcionJugador=='Lagarto'){
+
+        if(opcionMaquina=='Lagarto'){
+            gana='Empate';
+        }else if(opcionMaquina=="Spock"||opcionMaquina=="Papel"){
+            gana='Jugador'
+        }else if(opcionMaquina=="Tijeras"||opcionMaquina=="Piedra"){
+            gana='Maquina'
+        }
+        }
+        if(opcionJugador=='Spock'){
+
+        if(opcionMaquina=='Spock'){
+            gana='Empate';
+        }else if(opcionMaquina=="Tijeras"||opcionMaquina=="Piedra"){
+            gana='Jugador'
+        }else if(opcionMaquina=="Lagarto"||opcionMaquina=="Papel"){
+            gana='Maquina'
+        }
+        }
+        return gana;
+      }
+
+      function puntaje(){
+        console.log("Puntos del Jugador: " + PuntosJugador);
+        console.log("Puntos de la maquina: " + PuntosMaquina);
+        }
+
+       const opciones = ['Piedra','Papel','Tijera','Lagarto','Spock'];
+        var PuntosJugador = 0;
+        var PuntosMaquina = 0;
+       var partidas = prompt("Escoge cuantas partidas quieres jugar");
+
+while(PuntosJugador + PuntosMaquina < partidas){
+
+    var opcionJugador = escogeropcion();
+    var opcionMaquina = opcionmaquina();
+
+    var gana = resultado(opcionJugador, opcionMaquina);
+
+    if(gana == 'Jugador') {
+        PuntosJugador++;
+        console.log('Ganaste la ronda');
+    } 
+    else if(gana == 'Maquina') {
+         PuntosMaquina++;
+         console.log('Perdiste la ronda');
+    } 
+    else {
+        console.log('Empate en esta ronda');
+    }
+}
+
+puntaje();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>buscaminas</title>
+
+
+
+<style>
+        #buscaminas {
+           display: grid;
+           grid-template-columns: repeat(10, 30px);
+           grid-gap: 2px;
+       }
+       .casilla {
+           width: 30px;
+           height: 30px;
+           border: 1px solid black;
+           text-align: center;
+           line-height: 30px;
+           font-size: 14px;
+           cursor: pointer;
+       }
+</style>
+
+
+
+
+</head>
+<body>
+<div id="buscaminas"></div>
+<script>
+
+
+       var numBombas = 10;
+       var destapado = [];
+       var bombas = [];
+       var vidas = 5;
+      
+       function mostrar() {
+           var buscaminasDiv = document.getElementById('buscaminas');
+           buscaminasDiv.innerHTML = '';
+           for (var i = 0; i < 10; i++) {
+               for (var j = 0; j < 10; j++) {
+                   var casillaDiv = document.createElement('div');
+                   casillaDiv.className = 'casilla';
+                   casillaDiv.setAttribute('onclick', 'destapar(' + i + ',' + j + ')');
+                   if (destapado[i][j] == 0) {
+                       casillaDiv.textContent = 'x';
+                   } else {
+                       if (bombas[i][j] == 1) {
+                           casillaDiv.textContent = '💣';
+                       } else if (bombas[i][j] == 2) {
+                           casillaDiv.textContent = '🚩';
+                       } else {
+                           casillaDiv.textContent = ' ';
+                       }
+                   }
+                   buscaminasDiv.appendChild(casillaDiv);
+               }
+           }
+       } for (var i = 0; i < 10; i++) {
+           destapado.push([]);
+           bombas.push([]);
+           for (var j = 0; j < 10; j++) {
+               destapado[i].push(0);
+               bombas[i].push(0);
+           }
+       }
+       while (numBombas > 0) {
+           var fila = Math.floor(Math.random() * 10);
+           var columna = Math.floor(Math.random() * 10);
+           if (bombas[fila][columna] == 0) {
+               bombas[fila][columna] = 1;
+               if (fila - 1 >= 0 && columna + 1 < 10) {
+                   bombas[fila - 1][columna + 1] = 2;
+               }
+               if (columna - 1 >= 0) {
+                   bombas[fila][columna - 1] = 2;
+               }
+               if (fila + 1 < 10 && columna - 1 >= 0) {
+                   bombas[fila + 1][columna - 1] = 2;
+               }
+               if (fila - 1 >= 0) {
+                   bombas[fila - 1][columna] = 2;
+               }
+               if (fila + 1 < 10) {
+                   bombas[fila + 1][columna] = 2;
+               }
+               if (fila + 1 < 10 && columna - 1 >= 0) {
+                   bombas[fila + 1][columna - 1] = 2;
+               }
+               if (fila + 1 < 10) {
+                   bombas[fila + 1][columna] = 2;
+               }
+               if (fila + 1 < 10 && columna + 1 < 10) {
+                   bombas[fila + 1][columna + 1] = 2;
+               }
+               if (columna + 1 < 10) {
+                   bombas[fila ][columna + 1] = 2;
+               }
+               if (fila - 1 >= 0 && columna - 1 >= 0) {
+                   bombas[fila - 1][columna - 1] = 2;
+               }
+           }
+           numBombas--;
+       }
+       function destapar(fila, columna) {
+           destapado[fila][columna] = 1;
+           if (bombas[fila][columna] == 1) {
+               vidas--;
+               if (vidas == 0) {
+                   mostrar();
+                   console.log('Perdiste');
+               }
+           } else {
+               mostrar();
+           }
+       }
+       mostrar();
+</script>
+</body>
+</html>
