@@ -1,0 +1,38 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+}
+
+h1 {
+    margin-bottom: 30px; 
+}
+
+.contenedor-juegos {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+}
+
+.contenedor-juegos img {
+    width: 200px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 10px; 
+}
+
+.contenedor-juegos p {
+    margin-top: 10px; 
+    font-weight: bold; 
+    color: #333; 
+}
